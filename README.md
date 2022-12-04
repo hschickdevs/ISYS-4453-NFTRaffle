@@ -32,7 +32,7 @@ https://testnets.opensea.io/collection/digital-liminal-spaces
         3. Transfers the NFT to the winner.
         4. Transfers the raised funds to the Raffle owner.
 
-## For Web Design:
+## Web Design Ideas:
 
 * Use template: [*ethereum-boilerplate*](https://github.com/hschickdevs/ethereum-boilerplate)
 * Home page should display Raffles, with a dropdown to filter Raffles: All, Pending, Active, Settled, Cancelled.
