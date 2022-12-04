@@ -38,5 +38,5 @@ https://testnets.opensea.io/collection/digital-liminal-spaces
 * Home page should display Raffles, with a dropdown to filter Raffles: All, Pending, Active, Settled, Cancelled.
 
 ## Tasks for Blake:
-- [ ] Will need brief description in our presentation on how the randomisation method works, as this is a key component of a raffle in the sense that it needs to be provably random and fair. Also how it was implemented in the contract. https://en.wikipedia.org/wiki/Linear_congruential_generator
+- [ ] Will need brief description in our presentation on how the randomisation algorithm works, as this is a key component of a raffle in the sense that it needs to be provably random and fair. Also how it was implemented in the contract. https://en.wikipedia.org/wiki/Linear_congruential_generator
 - [ ] Create a few different wallet addresses, and get Mumbai testnet MATIC for them to test the raffles using the faucet: https://faucet.polygon.technology/
