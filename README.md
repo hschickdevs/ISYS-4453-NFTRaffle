@@ -13,9 +13,25 @@ https://testnets.opensea.io/collection/digital-liminal-spaces
 [Linear Congruential Psuedorandom Number Generator](https://en.wikipedia.org/wiki/Linear_congruential_generator)
 
 ## NFTRaffle Contract Design Flow:
-[**NFTRaffle.sol**](blockchain/NFTRaffle.sol)
+<br>
 
-1. `Constructor()` instantiates the NFTRaffle contract with all required data, but DOES NOT yet receive the NFT.
+![diagram](media/nft_raffle_diagram.png)
+
+### [**NFTRaffleFactory.sol**](blockchain/NFTRaffleFactory.sol)
+* This contract should be used as the gateway to create and track NFTRaffle contracts.
+* Raffles are created using the `createRaffle()` method.
+* Convenience functions include:
+    - `fetchRafflesByState()` - Returns an array of raffle addresses based on the state passed in (E.g. PENDING, ACTIVE, SETTLED, CANCELLED).
+    - `fetchRafflesByOwner()` - Returns an array of raffle addresses based on the owner address passed in.
+    - `raffles` array that contains `Raffle` structs to track:
+        * The raffle ID (for internal storage purposes)
+        * The raffle contract address
+        * The creation timestamp
+        * The Raffle owner's address
+        * The Raffle owner's ownerEmail
+
+### [**NFTRaffle.sol**](blockchain/NFTRaffle.sol)
+1. `Constructor()` instantiates the NFTRaffle contract with all required data, but DOES NOT yet receive the NFT. (this is called by the Factory contract)
     - This is because the NFTRaffle contract must be approved to spend the NFT by the owner.
 2. The owner approves the contract to spend the ERC721 NFT with the recently deployed NFTRaffle contract's address.
     * This is so that the NFTRaffle contract can call the ERC721.safeTransferFrom() method to receive the NFT, and send it to the winner once the raffle is over.
@@ -38,9 +54,9 @@ https://testnets.opensea.io/collection/digital-liminal-spaces
 * Home page should display Raffles, with a dropdown to filter Raffles: All, Pending, Active, Settled, Cancelled.
 
 ## Tasks:
-- [ ] _**Harrison**_ - Create Raffle smart contracts
+- [x] _**Harrison**_ - Create Raffle smart contracts
     * NFTRaffle.sol
-    * (TBD) NFTRaffleFactory.sol
+    * NFTRaffleFactory.sol
 - [ ] _**Isaiah & Harrison**_ - Create Webapp
 - [ ] **_Blake_** - Will need brief description in our presentation on how the randomisation algorithm works, as this is a key component of a raffle in the sense that it needs to be provably random and fair. Also how it was implemented in the contract. https://en.wikipedia.org/wiki/Linear_congruential_generator
 - [ ] **_Blake_** - Create a few different wallet addresses, and get Mumbai testnet MATIC for them to test the raffles using the faucet: https://faucet.polygon.technology/

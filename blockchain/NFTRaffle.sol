@@ -42,14 +42,14 @@ contract NFTRaffle is IERC721Receiver {
 
 
     // ---------- CONSTRUCTOR ---------- \\
-    constructor (address _nftAddress, uint _nftTokenID, string memory _ownerEmail, uint _ticketPrice, uint _duration) {
+    constructor (address _owner, address _nftAddress, uint _nftTokenID, string memory _ownerEmail, uint _ticketPrice, uint _duration) {
         // Verify NFT Credentials
         require(
-            ERC721(_nftAddress).ownerOf(_nftTokenID) == msg.sender,
+            ERC721(_nftAddress).ownerOf(_nftTokenID) == _owner,
             "Message sender does not own the specified NFT."
         );
         
-        owner = msg.sender;
+        owner = _owner;
         ownerEmail = _ownerEmail;
         ticketPrice = _ticketPrice;
         duration = _duration;
@@ -78,7 +78,7 @@ contract NFTRaffle is IERC721Receiver {
 
     // ---------- STATE FUNCTIONS ---------- \\
     function startRaffle() public {
-        require(_state == State.PENDING, "Raffle is not in 'Pending' state.");
+        require(_state == State.PENDING, "Raffle is not in 'Pending' _state.");
         require(ERC721(nftAddress).getApproved(nftTokenID) == address(this), "Raffle contract is not approved to access NFT");
 
         // Handle NFT Escrow (Contract should be approved to spend NFT)
@@ -138,7 +138,11 @@ contract NFTRaffle is IERC721Receiver {
         return this.onERC721Received.selector;
     }
 
-    function getState() public view returns (string memory) {
+    function getState() public view returns (uint) {
+        return uint(_state);
+    }
+
+    function getStateString() public view returns (string memory) {
         if (_state == State.PENDING) {
             return "Pending";
         } else if (_state == State.ACTIVE) {
