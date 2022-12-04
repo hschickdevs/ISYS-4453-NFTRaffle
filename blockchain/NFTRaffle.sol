@@ -67,7 +67,7 @@ contract NFTRaffle is IERC721Receiver {
         _;
     }
     modifier isActive() {
-        require(_state == State.ACTIVE, "Auction is not active.");
+        require(_state == State.ACTIVE, "Raffle is not active.");
         _;
     }
     modifier notEnded() {
@@ -78,7 +78,7 @@ contract NFTRaffle is IERC721Receiver {
 
     // ---------- STATE FUNCTIONS ---------- \\
     function startRaffle() public {
-        require(_state == State.PENDING, "Auction is not in 'Pending' state.");
+        require(_state == State.PENDING, "Raffle is not in 'Pending' state.");
         require(ERC721(nftAddress).getApproved(nftTokenID) == address(this), "Raffle contract is not approved to access NFT");
 
         // Handle NFT Escrow (Contract should be approved to spend NFT)
@@ -91,7 +91,9 @@ contract NFTRaffle is IERC721Receiver {
         emit Started(startTime, nftAddress, nftTokenID);
     }
 
-    function settleRaffle() public isOwner() isActive() notEnded() {
+    function settleRaffle() public isActive() notEnded() {
+        require(size() > 0, "Raffle is over, but no tickets were purchased. Call cancelRaffle() instead.");
+
         // Pick random ticket
         Ticket memory winningTicket = _drawTicket();
 
