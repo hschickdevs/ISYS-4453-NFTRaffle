@@ -12,11 +12,17 @@ contract NFTRaffleFactory {
         string ownerEmail;
     }
 
+    address public administrator; // Owner and controller of the factory contract
     Raffle[] public raffles;
     uint public rafflesCreated; // Required to keep the ability to remove raffles and keep ID creation
 
     event RaffleCreated(Raffle raffle);
     event RaffleDeleted(Raffle raffle);
+
+    constructor(address _administrator) {
+        // Msg.sender can either delegate the administrator role to another address or keep it. 
+        administrator = _administrator;
+    }
 
     // Create the NFTRaffle instance and return the NFTRaffle contract address
     function createRaffle(address nftAddress, uint nftTokenID, string memory ownerEmail, uint ticketPrice, uint duration) public returns (address) {
@@ -42,6 +48,8 @@ contract NFTRaffleFactory {
 
     // Delete raffle from storage (only owner of raffle)
     function deleteRaffle(uint raffleId) public {
+        require(msg.sender == administrator, "Only factory administrator can delete raffles");
+
         bool _matched = false;
         Raffle memory _matchedRaffle;
         uint _idx;
@@ -55,7 +63,7 @@ contract NFTRaffleFactory {
         }
 
         require(_matched, "Could not locate raffle with given ID.");
-        require(_matchedRaffle.owner == msg.sender, "Message sender does not own the specified raffle.");
+        // require(_matchedRaffle.owner == msg.sender, "Message sender does not own the specified raffle.");
         // Shift the array and remove the element:
         for (uint i = _idx; i < raffles.length - 1; i++) {
             raffles[i] = raffles[i + 1];
