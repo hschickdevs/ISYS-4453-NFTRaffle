@@ -4,6 +4,10 @@
 
  Escrow contract stores ERC721 NFT to be raffled, and sells tickets to the raffle for the specified price in the constructor.
 
+## Problems Addressed:
+- Centralized Raffles are not trustless, and can be manipulated by the raffle organizer. (e.g. the organizer can choose the winner, or not pay out the prize)
+- Centralized Raffles are not immutable, and can be changed by the raffle organizer. (e.g. the organizer can change the prize, or change the rules of the raffle, or cancel the raffle altogether without the consent of the participants)
+
 ## NFT Collection Used for Testing (Mumbai):
 
 https://testnets.opensea.io/collection/digital-liminal-spaces
@@ -59,4 +63,4 @@ https://testnets.opensea.io/collection/digital-liminal-spaces
     * NFTRaffleFactory.sol
 - [ ] _**Isaiah & Harrison**_ - Create Webapp
 - [ ] **_Blake_** - Will need brief description in our presentation on how the randomisation algorithm works, as this is a key component of a raffle in the sense that it needs to be provably random and fair. Also how it was implemented in the contract. https://en.wikipedia.org/wiki/Linear_congruential_generator
-- [ ] **_Blake_** - Create a few different wallet addresses, and get Mumbai testnet MATIC for them to test the raffles using the faucet: https://faucet.polygon.technology/
+- [ ] **_Blake_** - Create 5 different wallet addresses on Polygon's Mumbai testnet (using Metamask), and get Mumbai testnet MATIC for them to test the raffles using the faucet: https://faucet.polygon.technology/
