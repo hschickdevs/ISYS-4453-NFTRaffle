@@ -3,6 +3,8 @@
  Project files for NFTRaffle, the final project in our ISYS-4453 Blockchain Development class.
 
  Escrow contract stores ERC721 NFT to be raffled, and sells tickets to the raffle for the specified price in the constructor.
+ 
+ Contracts compiled and deployed using Remix.
 
 ## Problems Addressed:
 - Centralized Raffles are not trustless, and can be manipulated by the raffle organizer. (e.g. the organizer can choose the winner, or not pay out the prize)
