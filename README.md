@@ -60,11 +60,7 @@ https://testnets.opensea.io/collection/digital-liminal-spaces
 * Home page should display Raffles, with a dropdown to filter Raffles: All, Pending, Active, Settled, Cancelled.
 
 ## Web Design Flow:
-index.ts
-|
-|- {Join Raffle} -> raffles_marketplace.ts {Buy Tickets} -> raffle.ts
-|
-|- {Create Raffle} -> create_raffle.ts
+![img](media/diagram2.png)
 
 ## Tasks:
 - [x] _**Harrison**_ - Create Raffle smart contracts
