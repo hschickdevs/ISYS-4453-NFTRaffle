@@ -59,6 +59,13 @@ https://testnets.opensea.io/collection/digital-liminal-spaces
 * Use template: [*ethereum-boilerplate*](https://github.com/hschickdevs/ethereum-boilerplate)
 * Home page should display Raffles, with a dropdown to filter Raffles: All, Pending, Active, Settled, Cancelled.
 
+## Web Design Flow:
+index.ts
+|
+|- {Join Raffle} -> raffles_marketplace.ts {Buy Tickets} -> raffle.ts
+|
+|- {Create Raffle} -> create_raffle.ts
+
 ## Tasks:
 - [x] _**Harrison**_ - Create Raffle smart contracts
     * NFTRaffle.sol
