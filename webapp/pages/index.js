@@ -14,7 +14,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to Raffle.eth!
+          Welcome to <a href="">Raffle.eth!</a>
         </h1>
         <p className={styles.description}>
         </p>
