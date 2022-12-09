@@ -23,7 +23,7 @@ https://testnets.opensea.io/collection/digital-liminal-spaces
 
 ![diagram](media/nft_raffle_diagram.png)
 
-### [**NFTRaffleFactory.sol**](blockchain/NFTRaffleFactory.sol)
+### [**NFTRaffleFactory.sol**](blockchain/contracts/NFTRaffleFactory.sol)
 * This contract should be used as the gateway to create and track NFTRaffle contracts.
 * Raffles are created using the `createRaffle()` method.
 * Convenience functions include:
@@ -36,7 +36,7 @@ https://testnets.opensea.io/collection/digital-liminal-spaces
         * The Raffle owner's address
         * The Raffle owner's ownerEmail
 
-### [**NFTRaffle.sol**](blockchain/NFTRaffle.sol)
+### [**NFTRaffle.sol**](blockchain/contracts/NFTRaffle.sol)
 1. `Constructor()` instantiates the NFTRaffle contract with all required data, but DOES NOT yet receive the NFT. (this is called by the Factory contract)
     - This is because the NFTRaffle contract must be approved to spend the NFT by the owner.
 2. The owner approves the contract to spend the ERC721 NFT with the recently deployed NFTRaffle contract's address.
