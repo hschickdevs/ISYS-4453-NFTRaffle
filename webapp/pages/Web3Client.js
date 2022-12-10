@@ -40,5 +40,6 @@ export const getNFTRaffle = (raffleAddress) => {
 }
 
 export const getNFTRaffleFactory = () => {
+    // Static address variable is set to currently deployed NFTRaffleFactory contract on Polygon Mumbai Testnet
     return new web3.eth.Contract(NFTRaffleFactoryABI, '0x4c591F25BBD52a44d64CdF4cf586BaEb4D0DfB38');
 }

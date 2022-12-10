@@ -20,7 +20,7 @@ export default function Create_Raffle(){
         // Get the contract instance
         const NFTRaffleFactoryContract = await getNFTRaffleFactory();
 
-        // Attempt to send the transaction with the form data
+        // Attempt to send the transaction to deploy new NFTRaffle contract with the form data
         try {
             const raffleAddress = await NFTRaffleFactoryContract.methods.createRaffle(
                 data.NFTaddress,
