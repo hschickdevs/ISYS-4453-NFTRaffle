@@ -58,6 +58,7 @@ https://testnets.opensea.io/collection/digital-liminal-spaces
 
 * Use template: [*ethereum-boilerplate*](https://github.com/hschickdevs/ethereum-boilerplate)
 * Home page should display Raffles, with a dropdown to filter Raffles: All, Pending, Active, Settled, Cancelled.
+* Followed this video to connect metamask starts talking about calling a contract at about 17min [*Interact with Smart Contracts in React w/ Web3.js*](https://www.youtube.com/watch?v=h9PdvEDuZS8)
 
 ## Web Design Flow:
 ![img](media/diagram2.png)
