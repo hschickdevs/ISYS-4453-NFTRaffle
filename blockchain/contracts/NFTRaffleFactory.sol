@@ -47,6 +47,7 @@ contract NFTRaffleFactory {
     }
 
     // Delete raffle from storage (only owner of raffle)
+    // A raffle could be deleted if it was accidentally deployed (set to pending state) and will never actually be started.
     function deleteRaffle(uint raffleId) public {
         require(msg.sender == administrator, "Only factory administrator can delete raffles");
 

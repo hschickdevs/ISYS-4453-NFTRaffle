@@ -1,14 +1,17 @@
 import Web3 from "web3";
+import NFTRaffleFactoryABI from '../abi/NFTRaffleFactoryABI.js'
+import NFTRaffleABI from '../abi/NFTRaffleABI.js'
 
 
 let selectedAccount;
-let createRaffle;
+let web3;
+let provider;
 
-export const init = () => {
-
-    const web3 = new Web3("https://polygon-mumbai.g.alchemy.com/v2/tlaVXleVvdYQDrol0PKLp86ee0guNGwi")  
+export const init = async () => {
     
-    let provider = window.ethereum;
+    provider = window.ethereum;
+
+    web3 = new Web3(provider);
   
     if (typeof provider !== 'undefined') {
       //Metamask is installed
@@ -26,53 +29,16 @@ export const init = () => {
       });
 
     }
-    // The abi.js file wasn't reading it as json so just put createraffle here manually
-    const NFTRaffleABI = [
-        {
-            "inputs": [
-                {
-                    "internalType": "address",
-                    "name": "nftAddress",
-                    "type": "address"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "nftTokenID",
-                    "type": "uint256"
-                },
-                {
-                    "internalType": "string",
-                    "name": "ownerEmail",
-                    "type": "string"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "ticketPrice",
-                    "type": "uint256"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "duration",
-                    "type": "uint256"
-                }
-            ],
-            "name": "createRaffle",
-            "outputs": [
-                {
-                    "internalType": "address",
-                    "name": "",
-                    "type": "address"
-                }
-            ],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        }
-    ]
-    // abi and contract address
-    createRaffle = new web3.eth.Contract(
-        NFTRaffleABI,
-        '0x91F4637Fa345ee75Db56A12d07f9261bd5c82df8'
-    );
-    // from here I went to create_raffle.js 
 }
 
+export const getSelectedAccount = () => {
+    return selectedAccount;
+}
+
+export const getNFTRaffle = (raffleAddress) => {
+    return new web3.eth.Contract(NFTRaffleABI, raffleAddress);
+}
+
+export const getNFTRaffleFactory = () => {
+    return new web3.eth.Contract(NFTRaffleFactoryABI, '0x4c591F25BBD52a44d64CdF4cf586BaEb4D0DfB38');
+}
