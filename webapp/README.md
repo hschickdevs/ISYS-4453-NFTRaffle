@@ -9,7 +9,7 @@ for the page join_raffle.js i need function that lets a user join the raffle usi
 as far as the errors go I think we could just put a message on screen when someone submits something that says if metamask approves transaction you good otherwise try again..
 
 I would say as long as these calls shows up in a console.log i can make it happen on the front end.
-im not sure what to do about when the winner is announced yet my brain hurts..
+im not sure what to do about when the winner is announced yet but if you could just make a call that says who the winner is with there info
 
 
 
