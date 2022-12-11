@@ -71,7 +71,7 @@ contract NFTRaffle is IERC721Receiver {
         _;
     }
     modifier notEnded() {
-        require(block.timestamp >= endTime, "Raffle cannot be ended yet.");
+        require(block.timestamp <= endTime, "Raffle has not exceeded duration.");
         _;
     }
 
@@ -140,6 +140,10 @@ contract NFTRaffle is IERC721Receiver {
 
     function getState() public view returns (uint) {
         return uint(_state);
+    }
+
+    function isApproved() public view returns (bool) {
+        return ERC721(nftAddress).getApproved(nftTokenID) == address(this);
     }
 
     function getStateString() public view returns (string memory) {

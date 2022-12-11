@@ -26,6 +26,9 @@ contract NFTRaffleFactory {
 
     // Create the NFTRaffle instance and return the NFTRaffle contract address
     function createRaffle(address nftAddress, uint nftTokenID, string memory ownerEmail, uint ticketPrice, uint duration) public returns (address) {
+        bool _matched = false;
+        
+
         NFTRaffle raffleContract;
 
         raffleContract = new NFTRaffle(msg.sender, nftAddress, nftTokenID, ownerEmail, ticketPrice, duration);

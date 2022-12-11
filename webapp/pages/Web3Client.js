@@ -1,6 +1,7 @@
 import Web3 from "web3";
 import NFTRaffleFactoryABI from '../abi/NFTRaffleFactoryABI.js'
 import NFTRaffleABI from '../abi/NFTRaffleABI.js'
+import ERC721ABI from '../abi/ERC721ABI.js'
 
 
 let selectedAccount;
@@ -8,11 +9,10 @@ let web3;
 let provider;
 
 export const init = async () => {
-    
     provider = window.ethereum;
 
     web3 = new Web3(provider);
-  
+
     if (typeof provider !== 'undefined') {
       //Metamask is installed
       provider.request({method: 'eth_requestAccounts' }).then((accounts) => {
@@ -39,7 +39,11 @@ export const getNFTRaffle = (raffleAddress) => {
     return new web3.eth.Contract(NFTRaffleABI, raffleAddress);
 }
 
+export const getERC721 = (address) => {
+  return new web3.eth.Contract(ERC721ABI, address);
+}
+
 export const getNFTRaffleFactory = () => {
     // Static address variable is set to currently deployed NFTRaffleFactory contract on Polygon Mumbai Testnet
-    return new web3.eth.Contract(NFTRaffleFactoryABI, '0x4c591F25BBD52a44d64CdF4cf586BaEb4D0DfB38');
+    return new web3.eth.Contract(NFTRaffleFactoryABI, '0x35184A35303b48825440BEB46fB9A4F561f91498');
 }

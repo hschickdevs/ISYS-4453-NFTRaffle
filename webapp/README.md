@@ -1,17 +1,17 @@
-## Isaiah needs this
-for the page create.js I need a list of all the raffles the logged in owner has (I think its called Rafflesbyowner) and the images.
-you can put them in a list or something it doesnt really matter im not sure what it will return but I can figure it out. For this page I also need the functions that would let the owner set the state of the raffle(pending,active ect..)
+## Remaining Tasks:
 
-for the page join.js I need a list of all the raffles someone can join (the ones that are active)
+### Styling:
+- [ ] Add a way to navigate between all of the pages 
+- [ ] Style the pages to vaguely match the index.js page colors (or do new design alltogether)
+- [ ] Add a dropdown on /create and /join that allows users to sort by raffle state (i.e. pending, active, ended)
 
-for the page join_raffle.js i need function that lets a user join the raffle using the raffle they selected in the previous page and a way to get the price of the raffle they want to join to display it on that page.
+### Backend:
+- [ ] Disable Buttons on /create depending on cases (i.e. disable approve if already aproved, disable cancel if people have already entered, etc.)
+- [ ] Add total tickets sold to and earnings estimate to /create so owner can view earnings
+- [X] Add winner to the NFTRaffle smart contract and add this into the frontend
+- [X] Fix issue with Metamask button greyed out
 
-as far as the errors go I think we could just put a message on screen when someone submits something that says if metamask approves transaction you good otherwise try again..
-
-I would say as long as these calls shows up in a console.log i can make it happen on the front end.
-im not sure what to do about when the winner is announced yet but if you could just make a call that says who the winner is with there info
-
-
+___
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
