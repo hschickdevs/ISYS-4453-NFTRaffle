@@ -1,4 +1,4 @@
-const NFTRaffleABI = [
+[
 	{
 		"inputs": [
 			{
@@ -76,7 +76,7 @@ const NFTRaffleABI = [
 				"type": "tuple"
 			}
 		],
-		"name": "Ended",
+		"name": "Settled",
 		"type": "event"
 	},
 	{
@@ -396,7 +396,31 @@ const NFTRaffleABI = [
 		],
 		"stateMutability": "view",
 		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "winner",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "winnerEmail",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
 	}
 ]
-
-export default NFTRaffleABI;

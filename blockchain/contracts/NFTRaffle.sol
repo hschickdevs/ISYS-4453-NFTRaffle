@@ -34,11 +34,13 @@ contract NFTRaffle is IERC721Receiver {
 
     Ticket[] private tickets;
     mapping(address => uint) public ticketCounts;
+    address public winner;
+    string public winnerEmail;
 
     event Started(uint timestamp, address _nftAddress, uint _tokenID);
     event TicketsBought(address owner, uint amount);
     event Cancelled(uint timestamp);
-    event Ended(uint timestamp, Ticket winningTicket);
+    event Settled(uint timestamp, Ticket winningTicket);
 
 
     // ---------- CONSTRUCTOR ---------- \\
@@ -71,7 +73,7 @@ contract NFTRaffle is IERC721Receiver {
         _;
     }
     modifier notEnded() {
-        require(block.timestamp <= endTime, "Raffle has not exceeded duration.");
+        require(block.timestamp < endTime, "Raffle has exceeded duration.");
         _;
     }
 
@@ -91,7 +93,8 @@ contract NFTRaffle is IERC721Receiver {
         emit Started(startTime, nftAddress, nftTokenID);
     }
 
-    function settleRaffle() public isActive() notEnded() {
+    function settleRaffle() public isActive() {
+        require(block.timestamp >= endTime, "Raffle has not fulfilled duration.");
         require(size() > 0, "Raffle is over, but no tickets were purchased. Call cancelRaffle() instead.");
 
         // Pick random ticket
@@ -103,7 +106,14 @@ contract NFTRaffle is IERC721Receiver {
         // Disperse funds to owner
         payable(owner).transfer(address(this).balance);
 
-        emit Ended(block.timestamp, winningTicket);
+        // Record winner into blockchain
+        winner = winningTicket.owner;
+        winnerEmail = winningTicket.email;
+
+        // Finalize State and Emit Log
+        _state = State.SETTLED;
+        
+        emit Settled(block.timestamp, winningTicket);
     }
 
     function cancelRaffle() public isOwner() isActive() {
