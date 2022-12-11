@@ -1,3 +1,18 @@
+## Isaiah needs this
+for the page create.js I need a list of all the raffles the logged in owner has (I think its called Rafflesbyowner) and the images.
+you can put them in a list or something it doesnt really matter im not sure what it will return but I can figure it out. For this page I also need the functions that would let the owner set the state of the raffle(pending,active ect..)
+
+for the page join.js I need a list of all the raffles someone can join (the ones that are active)
+
+for the page join_raffle.js i need function that lets a user join the raffle using the raffle they selected in the previous page and a way to get the price of the raffle they want to join to display it on that page.
+
+as far as the errors go I think we could just put a message on screen when someone submits something that says if metamask approves transaction you good otherwise try again..
+
+I would say as long as these calls shows up in a console.log i can make it happen on the front end.
+im not sure what to do about when the winner is announced yet my brain hurts..
+
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
