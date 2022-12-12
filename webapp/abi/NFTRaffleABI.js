@@ -1,4 +1,4 @@
-[
+const NFTRaffleABI = [
 	{
 		"inputs": [
 			{
@@ -424,3 +424,5 @@
 		"type": "function"
 	}
 ]
+
+export default NFTRaffleABI;
