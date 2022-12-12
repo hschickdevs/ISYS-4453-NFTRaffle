@@ -126,15 +126,18 @@ export default function Create(){
         }
     }
 
+    const createRaffle = () => {
+        window.location="/create-raffle"
+      }
     return(
         <div>
-            <button><a href='/create-raffle'>Create Raffle</a></button>
+            <button className="btn btn-primary m-3" onClick={createRaffle}>Create Raffle</button>
             {/* <button onClick={() => getRafflesByOwner(getSelectedAccount())}>Get Raffles by Owner</button> */}
             {/* <button onClick={() => approveNFT(
                 '0xD7bf241c5266E616568a9366EEd7F8F0Cfe35dDa', '0x28510E6c60668858A73fDA70D172a3a1Dbaaf69b', 3)
                 }>Test approveNFT</button> */}
                         
-            <button onClick={updateGlobalRaffles}>Refresh My Raffles</button>
+            <button className="btn btn-primary m-3" onClick={updateGlobalRaffles}>Refresh My Raffles</button>
             
             {/* Loop through globalRaffles (set when calling updateGlobalRaffles)*/}
             <h2 style={{margin: '20px'}}>Your Raffles</h2>

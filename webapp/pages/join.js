@@ -68,12 +68,13 @@ export default function Join(){
     }
 
     return(
-        <div>            
+        <div>
             {/* Yeah this is monkey but we can fix it later with a dropdown*/}
             <button onClick={() => getRafflesByState(0)}>Show Pending Raffles</button>
             <button onClick={() => getRafflesByState(1)}>Show Active Raffles</button>
             <button onClick={() => getRafflesByState(2)}>Show Settled Raffles</button>
             <button onClick={() => getRafflesByState(3)}>Show Cancelled Raffles</button>
+            
 
             <h2 style={{margin: '20px'}}>{rafflesDisplayState}</h2>
             {rafflesDisplay.map((raffle) => (
