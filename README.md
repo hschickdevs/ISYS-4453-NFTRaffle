@@ -58,12 +58,5 @@ https://testnets.opensea.io/collection/digital-liminal-spaces
         4. Transfers the raised funds to the Raffle owner.
 
 ## Web Design Flow:
-![img](media/webflow_diagram.png)
 
-## Tasks:
-- [x] _**Harrison**_ - Create Raffle smart contracts
-    * NFTRaffle.sol
-    * NFTRaffleFactory.sol
-- [ ] _**Isaiah & Harrison**_ - Create Webapp
-- [ ] **_Blake_** - Will need brief description in our presentation on how the randomisation algorithm works, as this is a key component of a raffle in the sense that it needs to be provably random and fair. Also how it was implemented in the contract. https://en.wikipedia.org/wiki/Linear_congruential_generator
-- [ ] **_Blake_** - Create 5 different wallet addresses on Polygon's Mumbai testnet (using Metamask), and get Mumbai testnet MATIC for them to test the raffles using the faucet: https://faucet.polygon.technology/
+![img](media/webflow_diagram.png)
