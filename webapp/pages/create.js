@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react'
 import { init, getNFTRaffleFactory, getNFTRaffle, getERC721, getSelectedAccount } from './Web3Client'
 import * as web3Utils from 'web3-utils';
 
+
 // This page will list deployed raffles the owner has, it also has a button to create a new one.
 
 export default function Create(){
@@ -130,38 +131,50 @@ export default function Create(){
         window.location="/create-raffle"
       }
     return(
+        
         <div>
-            <button className="btn btn-primary m-3" onClick={createRaffle}>Create Raffle</button>
+            
             {/* <button onClick={() => getRafflesByOwner(getSelectedAccount())}>Get Raffles by Owner</button> */}
             {/* <button onClick={() => approveNFT(
                 '0xD7bf241c5266E616568a9366EEd7F8F0Cfe35dDa', '0x28510E6c60668858A73fDA70D172a3a1Dbaaf69b', 3)
                 }>Test approveNFT</button> */}
                         
-            <button className="btn btn-primary m-3" onClick={updateGlobalRaffles}>Refresh My Raffles</button>
+            
             
             {/* Loop through globalRaffles (set when calling updateGlobalRaffles)*/}
-            <h2 style={{margin: '20px'}}>Your Raffles</h2>
+            <h2 className='white' style={{margin: '20px'}}>Your Raffles <button className="btn btn-primary m-3" onClick={updateGlobalRaffles}><i class="bi bi-arrow-clockwise"></i></button>
+            <button className="btn btn-primary m-3" onClick={createRaffle}>Create Raffle</button></h2> 
             <ul>
                 {globalRaffles.map((raffle) => (
-                    <div style={{width: '500px', border: '5px solid black', padding: '50px', margin: '20px', align: 'center'}} key={`raffle-${raffle[0]}`}>
-                        <img width='200' src={raffle[5]} alt="nft_image" id="itemImg"/>
-                        <p><b>({raffle[0]}) Raffle at Address:</b> {raffle[1]}</p>
-                        <p><b>{raffle[7]}</b></p>
-                        <p><em>{raffle[6]}</em></p>
-                        <p><b>Ticket Price:</b> {web3Utils.fromWei(raffle[10], 'ether')} ETH</p>
-                        <p><b>Current State:</b> {raffle[11]}</p>
+                    <div className='card' style={{width: '500px', padding: '50px', margin: '20px', align: 'center'}} key={`raffle-${raffle[0]}`}>
+                        <img  className='card-img-top' width='200' src={raffle[5]} alt="nft_image" id="itemImg"/>
+                        <br></br>
+                        <p className='white'><b className='white'>({raffle[0]}) Raffle at Address:</b> {raffle[1]}</p>
+                        <p><b className='white'>{raffle[7]}</b></p>
+                        <p><em className='white'>{raffle[6]}</em></p>
+                        <p className='white'><b className='white'>Ticket Price:</b> {web3Utils.fromWei(raffle[10], 'ether')} ETH</p>
+                        <p className='white'><b className='white'>Current State:</b> {raffle[11]}</p>
                         {raffle[12] > 0
-                            ? <p><b>Ends At:</b> {(new Date(raffle[12] * 1000)).toLocaleString()}</p>
-                            : <p><b>Ends At:</b> Not Started</p>
+                            ? <p className='white'><b className='white'>Ends At:</b> {(new Date(raffle[12] * 1000)).toLocaleString()}</p>
+                            : <p className='white'><b className='white'>Ends At:</b> Not Started</p>
                         }
-                        <p style={{color: 'blue'}}><a href={`https://testnets.opensea.io/assets/mumbai/${raffle[8]}/${raffle[9]}`}>View on Opensea</a></p>
-                        <button onClick={() => approveNFT(raffle[1], raffle[8], raffle[9])}>Approve</button>
-                        <button onClick={() => startRaffle(raffle[1])}>Start Raffle</button>
-                        <button onClick={() => cancelRaffle(raffle[1])}>Cancel Raffle</button>
-                        <button onClick={() => settleRaffle(raffle[1])}>Settle Raffle</button>
+                        <p className='white' style={{color: 'blue'}}><a href={`https://testnets.opensea.io/assets/mumbai/${raffle[8]}/${raffle[9]}`}>View on Opensea</a></p>
+                        <button className='btn btn-primary btn-sm' onClick={() => approveNFT(raffle[1], raffle[8], raffle[9])}>Approve</button>
+                        <br></br>
+                        <button className='btn btn-primary btn-sm' onClick={() => startRaffle(raffle[1])}>Start Raffle</button>
+                        <br></br>
+                        <button className='btn btn-primary btn-sm' onClick={() => cancelRaffle(raffle[1])}>Cancel Raffle</button>
+                        <br></br>
+                        <button className='btn btn-primary btn-sm' onClick={() => settleRaffle(raffle[1])}>Settle Raffle</button>
                     </div>
                 ))}
             </ul>
+            <style
+dangerouslySetInnerHTML={{
+  __html:
+    "\nbody {\n  background-color: #000;\n}\n.card {\n  background-color: #15172b;\n}\n.white {\n  color: #eee;\n}\n.card-img-top {\n  max-height: 350px;\n  min-height: 150px;\n  object-fit: cover;\n}\n"
+}}
+/>
         </div>
     )
 }

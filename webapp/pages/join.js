@@ -11,7 +11,7 @@ export default function Join(){
     useEffect(() => {
         init();
     }, []);
-
+    
     const getRaffleNFTMetadata = async (raffleAddress) => { // (raffleAddress)
         const NFTRaffleContract = await getNFTRaffle(raffleAddress);
         const metadataURL = await NFTRaffleContract.methods.nftTokenURI().call();
@@ -69,34 +69,56 @@ export default function Join(){
 
     return(
         <div>
-            {/* Yeah this is monkey but we can fix it later with a dropdown*/}
-            <button onClick={() => getRafflesByState(0)}>Show Pending Raffles</button>
-            <button onClick={() => getRafflesByState(1)}>Show Active Raffles</button>
-            <button onClick={() => getRafflesByState(2)}>Show Settled Raffles</button>
-            <button onClick={() => getRafflesByState(3)}>Show Cancelled Raffles</button>
-            
+            <>
+  <div className="center">
+    <ul className="crumb1">
+      <li>
+        <a href="/">Home</a>
+      </li>
+    </ul>
+    <br />
+  </div>
+  <style
+    dangerouslySetInnerHTML={{
+      __html:
+        "\n @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');\n\n\n\n*\n{\n  font-family: poppins;\n  text-decoration: none;\n  user-select: none;\n}\n\n.center\n{\n  padding:10px\n}\n\na\n{\n  color: #eee;\n}\n\n.crumb1 li\n{\n  display: inline-block;\n  padding: 15px;\n  background: #15172b;\n  transform: skew(-20deg);\n  cursor: pointer;\n  opacity: 0.8;\n}\n\n.crumb1 li:hover\n{\n  opacity: 1;\n}\n\n.crumb1 li a\n{\n  display: block;\n  transform: skew(20deg);\n}\n\n\n"
+    }}
+  />
+</>
+            <div className="btn-group" role="group" aria-label="Basic example">
+                <button onClick={() => getRafflesByState(0)} type="button" className="btn btn-secondary">Show Pending Raffles</button>
+                <button onClick={() => getRafflesByState(1)} type="button" className="btn btn-secondary">Show Active Raffles</button>
+                <button onClick={() => getRafflesByState(2)} type="button" className="btn btn-secondary">Show Settled Raffles</button>
+                <button onClick={() => getRafflesByState(3)} type="button" className="btn btn-secondary">Show Cancelled Raffles</button>
+            </div>
 
-            <h2 style={{margin: '20px'}}>{rafflesDisplayState}</h2>
+            <h2 className='white' style={{margin: '20px'}}>{rafflesDisplayState}</h2>
             {rafflesDisplay.map((raffle) => (
-                    <div style={{width: '500px', border: '5px solid black', padding: '50px', margin: '20px', align: 'center'}} key={`raffle-${raffle[0]}`}>
-                        <img width='200' src={raffle[5]} alt="nft_image" id="itemImg"/>
-                        <p><b>({raffle[0]}) Raffle at Address:</b> {raffle[1]}</p>
-                        <p><b>{raffle[7]}</b></p>
-                        <p><em>{raffle[6]}</em></p>
-                        <p><b>Ticket Price:</b> {web3Utils.fromWei(raffle[10], 'ether')} ETH</p>
-                        <p><b>Current State:</b> {raffle[11]}</p>
+                    <div className='card' style={{width: '500px', padding: '50px', margin: '20px', align: 'center'}} key={`raffle-${raffle[0]}`}>
+                        <img className='card-img-top' width='200' src={raffle[5]} alt="nft_image" id="itemImg"/>
+                        <p className='white'><b className='white'>({raffle[0]}) Raffle at Address:</b> {raffle[1]}</p>
+                        <p><b className='white'>{raffle[7]}</b></p>
+                        <p><em className='white'>{raffle[6]}</em></p>
+                        <p className='white'><b className='white'>Ticket Price:</b> {web3Utils.fromWei(raffle[10], 'ether')} ETH</p>
+                        <p className='white'><b className='white'>Current State:</b> {raffle[11]}</p>
                         {raffle[12] > 0
-                            ? <p><b>Ends At:</b> {(new Date(raffle[12] * 1000)).toLocaleString()}</p>
-                            : <p><b>Ends At:</b> Not Started</p>
+                            ? <p className='white'><b className='white'>Ends At:</b> {(new Date(raffle[12] * 1000)).toLocaleString()}</p>
+                            : <p className='white'><b className='white'>Ends At:</b> Not Started</p>
                         }
                         <p style={{color: 'blue'}}>
-                            <a href={`https://testnets.opensea.io/assets/mumbai/${raffle[8]}/${raffle[9]}`}>View on Opensea</a>
+                            <a className='white' href={`https://testnets.opensea.io/assets/mumbai/${raffle[8]}/${raffle[9]}`}>View on Opensea</a>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <a href={`https://mumbai.polygonscan.com/address/${raffle[1]}`}>View on Polyscan</a>
+                            <a className='white' href={`https://mumbai.polygonscan.com/address/${raffle[1]}`}>View on Polyscan</a>
                         </p>
-                        <button><Link href={`/join-raffle/${raffle[1]}`}>Enter Raffle</Link></button>
+                        <button className='enter'><Link className='white' href={`/join-raffle/${raffle[1]}`}>Enter Raffle</Link></button>
                     </div>
                 ))}
+<style
+  dangerouslySetInnerHTML={{
+    __html:
+      "\nbody {\n  background-color: #000;\n}\n.card {\n  background-color: #15172b;\n}\n.white {\n  color: #eee;\n}\n.card-img-top {\n  max-height: 300px;\n  min-height: 150px;\n  object-fit: cover;\n}\n.btn {\n  background-color: #15172b;\n  border: none;\n}\n.enter {\n  background-color: #0d6efd;\n  border: none;\n}\n"
+  }}
+/>
         </div>
     )
 }
