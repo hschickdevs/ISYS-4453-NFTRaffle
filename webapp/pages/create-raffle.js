@@ -3,7 +3,8 @@ import { useForm } from "react-hook-form";
 import createRaffle from './Web3Client'
 import React, {useEffect} from 'react'
 import { init, getNFTRaffleFactory, getNFTRaffle, getSelectedAccount } from './Web3Client'
-import * as web3Utils from 'web3-utils';
+import * as web3Utils from 'web3-utils'
+import Link from 'next/link'
 
 // the selectedAccount variable is not in this file so may need to do that
 // need to eithier send this data to web3client or bring stuff over from web3client
@@ -40,25 +41,7 @@ export default function Create_Raffle(){
     return(
         // form to get info for creating a raffle
     <div>
-        <>
-  <div className="center">
-    <ul className="crumb1">
-      <li>
-        <a href="/">Home</a>
-      </li>
-      <li>
-        <a href="/create">Your Raffles</a>
-      </li>
-    </ul>
-    <br />
-  </div>
-  <style
-    dangerouslySetInnerHTML={{
-      __html:
-        "\n @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');\n\n\n\n*\n{\n  font-family: poppins;\n  text-decoration: none;\n  user-select: none;\n}\n\n.center\n{\n  padding:10px\n}\n\na\n{\n  color: #fff;\n}\n\n.crumb1 li\n{\n  display: inline-block;\n  padding: 15px;\n  background: #15172b;\n  transform: skew(-20deg);\n  cursor: pointer;\n  opacity: 0.8;\n}\n\n.crumb1 li:hover\n{\n  opacity: 1;\n}\n\n.crumb1 li a\n{\n  display: block;\n  transform: skew(20deg);\n}\n\n\n"
-    }}
-  />
-</>
+
         <form onSubmit={handleSubmit(onSubmit)}>
 
         <div className="form">
@@ -87,11 +70,12 @@ export default function Create_Raffle(){
             <button type="text" className="submit">
                 Submit
             </button>
+            <button className="submit"><Link className='subtitle' href="/create">Exit</Link></button>
         </div>
         <style
         dangerouslySetInnerHTML={{
             __html:
-            "\n      body {\n  align-items: center;\n  background-color: #000;\n  display: flex;\n  justify-content: center;\n  height: 100vh;\n}\n\n.form {\n  background-color: #15172b;\n  border-radius: 20px;\n  box-sizing: border-box;\n  height: 715px;\n  padding: 20px;\n  width: 500px;\n}\n\n.title {\n  color: #eee;\n  font-family: sans-serif;\n  font-size: 36px;\n  font-weight: 600;\n  margin-top: 30px;\n}\n\n.subtitle {\n  color: #eee;\n  font-family: sans-serif;\n  font-size: 16px;\n  font-weight: 600;\n  margin-top: 10px;\n}\n\n.input-container {\n  height: 50px;\n  position: relative;\n  width: 100%;\n}\n\n.ic1 {\n  margin-top: 40px;\n}\n\n.ic2 {\n  margin-top: 30px;\n}\n\n.input {\n  background-color: #303245;\n  border-radius: 12px;\n  border: 0;\n  box-sizing: border-box;\n  color: #eee;\n  font-size: 18px;\n  height: 100%;\n  outline: 0;\n  padding: 4px 20px 0;\n  width: 100%;\n}\n\n.cut {\n  background-color: #15172b;\n  border-radius: 10px;\n  height: 20px;\n  left: 20px;\n  position: absolute;\n  top: -20px;\n  transform: translateY(0);\n  transition: transform 200ms;\n  width: 76px;\n}\n\n.cut-short {\n  width: 50px;\n}\n\n.input:focus ~ .cut,\n.input:not(:placeholder-shown) ~ .cut {\n  transform: translateY(8px);\n}\n\n.placeholder {\n  color: #65657b;\n  font-family: sans-serif;\n  left: 20px;\n  line-height: 14px;\n  pointer-events: none;\n  position: absolute;\n  transform-origin: 0 50%;\n  transition: transform 200ms, color 200ms;\n  top: 20px;\n}\n\n.input:focus ~ .placeholder,\n.input:not(:placeholder-shown) ~ .placeholder {\n  transform: translateY(-30px) translateX(10px) scale(0.75);\n}\n\n.input:not(:placeholder-shown) ~ .placeholder {\n  color: #808097;\n}\n\n.input:focus ~ .placeholder {\n  color: #dc2f55;\n}\n\n.submit {\n  background-color: #08d;\n  border-radius: 12px;\n  border: 0;\n  box-sizing: border-box;\n  color: #eee;\n  cursor: pointer;\n  font-size: 18px;\n  height: 50px;\n  margin-top: 38px;\n  // outline: 0;\n  text-align: center;\n  width: 100%;\n}\n\n.submit:active {\n  background-color: #06b;\n}\n\n    "
+            "\n      body {\n  align-items: center;\n  background-color: #000;\n  display: flex;\n  justify-content: center;\n  height: 100vh;\n}\n\n.form {\n  background-color: #15172b;\n  border-radius: 20px;\n  box-sizing: border-box;\n  height: 775px;\n  padding: 20px;\n  width: 500px;\n}\n\n.title {\n  color: #eee;\n  font-family: sans-serif;\n  font-size: 36px;\n  font-weight: 600;\n  margin-top: 30px;\n}\n\n.subtitle {\n  color: #eee;\n  font-family: sans-serif;\n  font-size: 16px;\n  font-weight: 600;\n  margin-top: 10px;\n}\n\n.input-container {\n  height: 50px;\n  position: relative;\n  width: 100%;\n}\n\n.ic1 {\n  margin-top: 40px;\n}\n\n.ic2 {\n  margin-top: 30px;\n}\n\n.input {\n  background-color: #303245;\n  border-radius: 12px;\n  border: 0;\n  box-sizing: border-box;\n  color: #eee;\n  font-size: 18px;\n  height: 100%;\n  outline: 0;\n  padding: 4px 20px 0;\n  width: 100%;\n}\n\n.cut {\n  background-color: #15172b;\n  border-radius: 10px;\n  height: 20px;\n  left: 20px;\n  position: absolute;\n  top: -20px;\n  transform: translateY(0);\n  transition: transform 200ms;\n  width: 76px;\n}\n\n.cut-short {\n  width: 50px;\n}\n\n.input:focus ~ .cut,\n.input:not(:placeholder-shown) ~ .cut {\n  transform: translateY(8px);\n}\n\n.placeholder {\n  color: #65657b;\n  font-family: sans-serif;\n  left: 20px;\n  line-height: 14px;\n  pointer-events: none;\n  position: absolute;\n  transform-origin: 0 50%;\n  transition: transform 200ms, color 200ms;\n  top: 20px;\n}\n\n.input:focus ~ .placeholder,\n.input:not(:placeholder-shown) ~ .placeholder {\n  transform: translateY(-30px) translateX(10px) scale(0.75);\n}\n\n.input:not(:placeholder-shown) ~ .placeholder {\n  color: #808097;\n}\n\n.input:focus ~ .placeholder {\n  color: #dc2f55;\n}\n\n.submit {\n  background-color: #08d;\n  border-radius: 12px;\n  border: 0;\n  box-sizing: border-box;\n  color: #eee;\n  cursor: pointer;\n  font-size: 18px;\n  height: 50px;\n  margin-top: 38px;\n  // outline: 0;\n  text-align: center;\n  width: 100%;\n}\n\n.submit:active {\n  background-color: #06b;\n}\n\n    "
         }}
         />
         </form>

@@ -175,6 +175,11 @@ dangerouslySetInnerHTML={{
     "\nbody {\n  background-color: #000;\n}\n.card {\n  background-color: #15172b;\n}\n.white {\n  color: #eee;\n}\n.card-img-top {\n  max-height: 350px;\n  min-height: 150px;\n  object-fit: cover;\n}\n"
 }}
 />
+<style
+  dangerouslySetInnerHTML={{
+    __html: "\n.btn {\n  background-color:#15172b;\n  border:none;\n}\n"
+  }}
+/>
         </div>
     )
 }

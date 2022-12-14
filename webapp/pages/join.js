@@ -70,7 +70,7 @@ export default function Join(){
     return(
         <div>
             <>
-  <div className="center">
+  <div className="nav">
     <ul className="crumb1">
       <li>
         <a href="/">Home</a>
@@ -79,18 +79,28 @@ export default function Join(){
     <br />
   </div>
   <style
+  dangerouslySetInnerHTML={{ __html: "\n.nav {\n  padding: 20px;\n}\n" }}
+/>
+  <style
     dangerouslySetInnerHTML={{
       __html:
         "\n @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');\n\n\n\n*\n{\n  font-family: poppins;\n  text-decoration: none;\n  user-select: none;\n}\n\n.center\n{\n  padding:10px\n}\n\na\n{\n  color: #eee;\n}\n\n.crumb1 li\n{\n  display: inline-block;\n  padding: 15px;\n  background: #15172b;\n  transform: skew(-20deg);\n  cursor: pointer;\n  opacity: 0.8;\n}\n\n.crumb1 li:hover\n{\n  opacity: 1;\n}\n\n.crumb1 li a\n{\n  display: block;\n  transform: skew(20deg);\n}\n\n\n"
     }}
   />
 </>
+            <div className="center">
             <div className="btn-group" role="group" aria-label="Basic example">
                 <button onClick={() => getRafflesByState(0)} type="button" className="btn btn-secondary">Show Pending Raffles</button>
                 <button onClick={() => getRafflesByState(1)} type="button" className="btn btn-secondary">Show Active Raffles</button>
                 <button onClick={() => getRafflesByState(2)} type="button" className="btn btn-secondary">Show Settled Raffles</button>
                 <button onClick={() => getRafflesByState(3)} type="button" className="btn btn-secondary">Show Cancelled Raffles</button>
             </div>
+            </div>
+            <style
+  dangerouslySetInnerHTML={{
+    __html: "\n.center {\n  display: flex;\n  justify-content: center;\n}\n"
+  }}
+/>
 
             <h2 className='white' style={{margin: '20px'}}>{rafflesDisplayState}</h2>
             {rafflesDisplay.map((raffle) => (
