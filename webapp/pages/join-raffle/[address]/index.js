@@ -56,6 +56,7 @@ export default function Join_Raffle() {
         data.ticketPrice = await NFTRaffleContract.methods.ticketPrice().call();
         data.startTime = await NFTRaffleContract.methods.startTime().call();
         data.endTime = await NFTRaffleContract.methods.endTime().call();
+        data.winner = await NFTRaffleContract.methods.winner().call();
 
         data.state = await NFTRaffleContract.methods.getStateString().call();
         data.totalTickets = await NFTRaffleContract.methods.size().call();
@@ -126,6 +127,9 @@ export default function Join_Raffle() {
                     }
                     <p className='white'><b className='white'>Owner Contact:</b><br/>{raffleData.ownerEmail}</p>
                     <p className='white'><b className='white'>Owner Address:</b><br/>{raffleData.owner}</p>
+                    {raffleData.winner != "0x0000000000000000000000000000000000000000" &&
+                            <p className='white'><b className='white'>Winner:</b> {raffleData.winner}</p>
+                        }
                     {/* <p style={{ color: 'blue' }}><a href={`https://testnets.opensea.io/assets/mumbai/${raffleData.NFTaddress}/${raffleData.NFTtokenID}`}>View on Opensea</a></p> */}
                     {raffleData.state == "Active" &&
                         <div>

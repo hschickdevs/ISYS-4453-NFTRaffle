@@ -1,15 +1,15 @@
 ## Remaining Tasks:
 
 ### Styling:
-- [ ] Add a way to navigate between all of the pages 
+- [X] Add a way to navigate between all of the pages 
 - [X] Style the pages to vaguely match the index.js page colors (or do new design alltogether)
 - [X] Add a dropdown on /create and /join that allows users to sort by raffle state (i.e. pending, active, ended)
 
 ### Backend:
 - [X] Show a user's raffles on page load on /create
-- [ ] Add total tickets sold to and earnings estimate to /create so owner can view earnings
+- [X] Add total tickets sold to and earnings estimate to /create so owner can view earnings
 - [X] Show proper token (i.e. MATIC if on polygon) on /create and /join
-- [ ] Add winner to the NFTRaffle smart contract and add this into the frontend
+- [X] Add winner to the NFTRaffle smart contract and add this into the frontend
 - [X] Fix issue with Metamask button greyed out
 
 ___

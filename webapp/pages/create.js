@@ -39,6 +39,8 @@ export default function Create(){
         const ticketPrice = await NFTRaffleContract.methods.ticketPrice().call();
         const state = await NFTRaffleContract.methods.getStateString().call();
         const endTime = await NFTRaffleContract.methods.endTime().call();
+        const winner = await NFTRaffleContract.methods.winner().call();
+        const ticketsSold = await NFTRaffleContract.methods.size().call();
 
         // Fetch token metadata from the IPFS url (tokenURI in the contract)
         const metadata = await fetch(metadataURL).then(response => response.json());
@@ -47,6 +49,8 @@ export default function Create(){
         metadata['ticketPrice'] = ticketPrice;
         metadata['state'] = state;
         metadata['endTime'] = endTime;
+        metadata['winner'] = winner;
+        metadata['ticketsSold'] = ticketsSold;
 
         return metadata;
     }
@@ -65,7 +69,7 @@ export default function Create(){
                 output.push([].concat(
                     raffles[i], 
                     [raffleMetadata['image'], raffleMetadata['description'], raffleMetadata['name'], raffleMetadata['nftAddress'], raffleMetadata['nftTokenID'],
-                    raffleMetadata['ticketPrice'], raffleMetadata['state'], raffleMetadata['endTime']]));
+                    raffleMetadata['ticketPrice'], raffleMetadata['state'], raffleMetadata['endTime'], raffleMetadata['winner'], raffleMetadata['ticketsSold']]));
             }
             
             // Log output so that Isaiah can view output
@@ -181,10 +185,16 @@ export default function Create(){
                             <p><b className='white'>{raffle[7]}</b></p>
                             <p><em className='white'>{raffle[6]}</em></p>
                             <p className='white'><b className='white'>Ticket Price:</b> {web3Utils.fromWei(raffle[10], 'ether')} {nativeToken}</p>
+                            <p className='white'><b className='white'>Tickets Sold:</b> {raffle[14]}</p>
+                            <p className='white'><b className='white'>Current Earnings:</b> {web3Utils.fromWei(String(raffle[14] * raffle[10]), 'ether')} {nativeToken}</p>
                             <p className='white'><b className='white'>Current State:</b> {raffle[11]}</p>
                             {raffle[12] > 0
                                 ? <p className='white'><b className='white'>Ends At:</b> {(new Date(raffle[12] * 1000)).toLocaleString()}</p>
                                 : <p className='white'><b className='white'>Ends At:</b> Not Started</p>
+                            }
+                            {/* {show winner} */}
+                            {raffle[13] != "0x0000000000000000000000000000000000000000" &&
+                                <p className='white'><b className='white'>Winner:</b> {raffle[13]}</p>
                             }
                             <p className='white' style={{color: 'blue'}}><a href={`https://testnets.opensea.io/assets/mumbai/${raffle[8]}/${raffle[9]}`}>View on Opensea</a></p>
                             <button className='btn btn-primary btn-sm' onClick={() => approveNFT(raffle[1], raffle[8], raffle[9])}>Approve</button>
