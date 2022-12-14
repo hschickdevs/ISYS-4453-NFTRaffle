@@ -1,8 +1,13 @@
 # ISYS-4453-NFTRaffle
 
- Project files for NFTRaffle, the final project in our ISYS-4453 Blockchain Development class.
+![My Skills](https://skillicons.dev/icons?i=solidity,html,javascript,css,bootstrap)
 
- Escrow contract stores ERC721 NFT to be raffled, and sells tickets to the raffle for the specified price in the constructor. Once the raffle is over, the winner is chosen at random, and the NFT is sent to the winner and funds send to the Raffle owner.
+ As a final term project in our ISYS-4453 Blockchain Development class, we chose to create a decentralized NFT raffle platform using the Ethereum blockchain. 
+ 
+ The platform allows users to create and join raffles for ERC721 NFTs. The raffles are secured by an escrow contract that receives the ERC721 NFT and holds it for the duration of the raffle.
+ During the raffle, users can purchase tickets for the predetermined price. Once the raffle is over, the winner is chosen at random using the linear congruential generator, and the NFT is sent to the winner and funds send to the Raffle owner. *For a detailed overview of the smart contract functionality, see the contract design flows below.*
+
+ To interact with these contracts at a high level, we have created a frontend using React and Next.js. The site was styled using bootstrap and other frameworks. The site is hosted on Vercel with full functionality.
 
 ## Problems Addressed:
 - Centralized Raffles are not trustless, and can be manipulated by the raffle organizer. (e.g. the organizer can choose the winner, or not pay out the prize)
@@ -22,7 +27,7 @@ https://testnets.opensea.io/collection/digital-liminal-spaces
 ![diagram](media/nft_raffle_diagram.png)
 
 ### [**NFTRaffleFactory.sol**](blockchain/contracts/NFTRaffleFactory.sol)
-* This contract should be used as the gateway to create and track NFTRaffle contracts.
+* This contract should be used as the gateway to deploy and track NFTRaffle contracts.
 * Raffles are created using the `createRaffle()` method.
 * Convenience functions include:
     - `fetchRafflesByState()` - Returns an array of raffle addresses based on the state passed in (E.g. PENDING, ACTIVE, SETTLED, CANCELLED).
@@ -51,12 +56,6 @@ https://testnets.opensea.io/collection/digital-liminal-spaces
         2. Draws a winning ticket using the randomisation method.
         3. Transfers the NFT to the winner.
         4. Transfers the raised funds to the Raffle owner.
-
-## Web Design Ideas:
-
-* Use template: [*ethereum-boilerplate*](https://github.com/hschickdevs/ethereum-boilerplate)
-* Home page should display Raffles, with a dropdown to filter Raffles: All, Pending, Active, Settled, Cancelled.
-* Followed this video to connect metamask starts talking about calling a contract at about 17min [*Interact with Smart Contracts in React w/ Web3.js*](https://www.youtube.com/watch?v=h9PdvEDuZS8)
 
 ## Web Design Flow:
 ![img](media/diagram2.png)

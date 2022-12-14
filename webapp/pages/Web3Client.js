@@ -47,3 +47,15 @@ export const getNFTRaffleFactory = () => {
     // Static address variable is set to currently deployed NFTRaffleFactory contract on Polygon Mumbai Testnet
     return new web3.eth.Contract(NFTRaffleFactoryABI, '0x35184A35303b48825440BEB46fB9A4F561f91498');
 }
+
+export const getNativeTokenSymbol = async () => {
+    return await web3.eth.getChainId().then((chainId) => {
+      switch (chainId) {
+        case 80001:
+          return 'MATIC';
+        default:
+          return 'ETH';
+      }
+    })
+}
+

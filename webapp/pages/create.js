@@ -1,6 +1,6 @@
 import styles from '../styles/Home.module.css'
 import React, {useEffect, useState} from 'react'
-import { init, getNFTRaffleFactory, getNFTRaffle, getERC721, getSelectedAccount } from './Web3Client'
+import { init, getNFTRaffleFactory, getNFTRaffle, getERC721, getSelectedAccount, getNativeTokenSymbol } from './Web3Client'
 import * as web3Utils from 'web3-utils';
 
 
@@ -8,9 +8,26 @@ import * as web3Utils from 'web3-utils';
 
 export default function Create(){
     const [globalRaffles, setGlobalRaffles] = useState([]);
+    const [nativeToken, setNativeToken] = useState('');
+
+    var waitForWeb3AndWallet = function (callback) {
+        if (typeof window.ethereum !== 'undefined' && typeof window.ethereum.selectedAddress != 'undefined') {
+            console.log(`Web3 and Wallet Detected as ${window.ethereum.selectedAddress}!`)
+            callback();
+        } else {
+            var wait_callback = function () {
+                waitForWeb3AndWallet(callback);
+            };
+            setTimeout(wait_callback, 100);
+        }
+    }
 
     useEffect(() => {
         init();
+        waitForWeb3AndWallet(updateGlobalRaffles);
+        getNativeTokenSymbol().then((symbol) => {
+            setNativeToken(symbol);
+        })
     }, []);
 
     const getRaffleNFTMetadata = async (raffleAddress) => { // (raffleAddress)
@@ -68,7 +85,7 @@ export default function Create(){
 
     // Used to update the globalRaffles React state variable (uses the current window.ethereum address)
     const updateGlobalRaffles = async () => {
-        const output = await getRafflesByOwner(getSelectedAccount());
+        const output = await getRafflesByOwner(window.ethereum.selectedAddress);
         setGlobalRaffles(Array.from(output));
     }
 
@@ -152,7 +169,7 @@ export default function Create(){
                         <p className='white'><b className='white'>({raffle[0]}) Raffle at Address:</b> {raffle[1]}</p>
                         <p><b className='white'>{raffle[7]}</b></p>
                         <p><em className='white'>{raffle[6]}</em></p>
-                        <p className='white'><b className='white'>Ticket Price:</b> {web3Utils.fromWei(raffle[10], 'ether')} ETH</p>
+                        <p className='white'><b className='white'>Ticket Price:</b> {web3Utils.fromWei(raffle[10], 'ether')} {nativeToken}</p>
                         <p className='white'><b className='white'>Current State:</b> {raffle[11]}</p>
                         {raffle[12] > 0
                             ? <p className='white'><b className='white'>Ends At:</b> {(new Date(raffle[12] * 1000)).toLocaleString()}</p>

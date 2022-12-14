@@ -2,14 +2,14 @@
 
 ### Styling:
 - [ ] Add a way to navigate between all of the pages 
-- [ ] Style the pages to vaguely match the index.js page colors (or do new design alltogether)
-- [ ] Add a dropdown on /create and /join that allows users to sort by raffle state (i.e. pending, active, ended)
+- [X] Style the pages to vaguely match the index.js page colors (or do new design alltogether)
+- [X] Add a dropdown on /create and /join that allows users to sort by raffle state (i.e. pending, active, ended)
 
 ### Backend:
-- [ ] Disable Buttons on /create depending on cases (i.e. disable approve if already aproved, disable cancel if people have already entered, etc.)
-- [ ] Show a user's raffles on page load on /create
+- [X] Show a user's raffles on page load on /create
 - [ ] Add total tickets sold to and earnings estimate to /create so owner can view earnings
-- [X] Add winner to the NFTRaffle smart contract and add this into the frontend
+- [X] Show proper token (i.e. MATIC if on polygon) on /create and /join
+- [ ] Add winner to the NFTRaffle smart contract and add this into the frontend
 - [X] Fix issue with Metamask button greyed out
 
 ___

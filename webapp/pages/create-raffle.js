@@ -1,8 +1,8 @@
 
 import { useForm } from "react-hook-form";
 import createRaffle from './Web3Client'
-import React, {useEffect} from 'react'
-import { init, getNFTRaffleFactory, getNFTRaffle, getSelectedAccount } from './Web3Client'
+import React, {useEffect, useState} from 'react'
+import { init, getNFTRaffleFactory, getNFTRaffle, getSelectedAccount, getNativeTokenSymbol } from './Web3Client'
 import * as web3Utils from 'web3-utils'
 import Link from 'next/link'
 
@@ -10,10 +10,28 @@ import Link from 'next/link'
 // need to eithier send this data to web3client or bring stuff over from web3client
 
 export default function Create_Raffle(){
+    const [nativeToken, setNativeToken] = useState('...');
+
+    const waitForWeb3AndWallet = function (callback) {
+        if (typeof window.ethereum !== 'undefined' && typeof window.ethereum.selectedAddress != 'undefined') {
+            console.log(`Web3 and Wallet Detected as ${window.ethereum.selectedAddress}!`)
+            callback();
+        } else {
+            var wait_callback = function () {
+                waitForWeb3AndWallet(callback);
+            };
+            setTimeout(wait_callback, 100);
+        }
+      }
+
     useEffect(() => {
         init();
-
+        waitForWeb3AndWallet(console.log);
+        getNativeTokenSymbol().then((symbol) => {
+            setNativeToken(symbol);
+        });
     }, []);
+
     const {register, handleSubmit} = useForm();
     const onSubmit = async (data) => {
         console.log(data)
@@ -60,7 +78,7 @@ export default function Create_Raffle(){
                 <input id="email" className="input" type="email" aria-describedby="emailHelp" name="Email" {...register("Email", {required: true})} placeholder=" " />
             </div>
             <div className="input-container ic2">
-                <div className="subtitle">Ticket Price(In Eth)</div>
+                <div className="subtitle">Ticket Price(In {nativeToken})</div>
                 <input id="email" className="input" type="text" name="Ticketprice" {...register("Ticketprice", {required: true})} placeholder="" />
             </div>
             <div className="input-container ic2">
