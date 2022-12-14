@@ -83,17 +83,16 @@ export default function Join(){
         } catch(err) {
             alert('An error occurred: ' + err.message)
         }
-    }
 
+    }
+    const home = () => {
+        window.location="/"
+    }
     return(
         <div>
             <>
   <div className="nav">
-    <ul className="crumb1">
-      <li>
-        <a href="/">Home</a>
-      </li>
-    </ul>
+  <button id="top-buttons" className="btn btn-primary m-3" onClick={home}><i class="bi bi-house"/></button>
     <br />
   </div>
   <style
@@ -121,6 +120,7 @@ export default function Join(){
 />
 
             <h2 className='white' style={{margin: '20px'}}>{rafflesDisplayState}</h2>
+            <div className='card-row'>
             {(rafflesDisplay.length == 0 && rafflesDisplayState != 'Choose Raffles State to View') 
               && <p className='white' style={{margin: '20px'}}>There are no raffles to display.</p>}
             {rafflesDisplay.map((raffle) => (
@@ -143,12 +143,19 @@ export default function Join(){
                         <button className='enter'><Link className='white' href={`/join-raffle/${raffle[1]}`}>Enter Raffle</Link></button>
                     </div>
                 ))}
+            </div>
 <style
   dangerouslySetInnerHTML={{
     __html:
       "\nbody {\n  background-color: #000;\n}\n.card {\n  background-color: #15172b;\n}\n.white {\n  color: #eee;\n}\n.card-img-top {\n  max-height: 300px;\n  min-height: 150px;\n  object-fit: cover;\n}\n.btn {\n  background-color: #15172b;\n  border: none;\n}\n.enter {\n  background-color: #0d6efd;\n  border: none;\n}\n"
   }}
 />
+<style
+    dangerouslySetInnerHTML={{
+      __html:
+        "\n.card-row {\n  display: flex;\n  \n}\n\n"
+    }}
+  />
         </div>
     )
 }

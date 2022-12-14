@@ -1,7 +1,8 @@
 import styles from '../styles/Home.module.css'
 import React, {useEffect, useState} from 'react'
 import { init, getNFTRaffleFactory, getNFTRaffle, getERC721, getSelectedAccount, getNativeTokenSymbol } from './Web3Client'
-import * as web3Utils from 'web3-utils';
+import * as web3Utils from 'web3-utils'
+import Link from 'next/link'
 
 
 // This page will list deployed raffles the owner has, it also has a button to create a new one.
@@ -147,6 +148,10 @@ export default function Create(){
     const createRaffle = () => {
         window.location="/create-raffle"
       }
+    
+    const home = () => {
+        window.location="/"
+    }
     return(
         
         <div>
@@ -159,32 +164,43 @@ export default function Create(){
             
             
             {/* Loop through globalRaffles (set when calling updateGlobalRaffles)*/}
-            <h2 className='white' style={{margin: '20px'}}>Your Raffles <button className="btn btn-primary m-3" onClick={updateGlobalRaffles}><i class="bi bi-arrow-clockwise"></i></button>
-            <button className="btn btn-primary m-3" onClick={createRaffle}>Create Raffle</button></h2> 
+            <h2 className='white' style={{margin: '20px'}}>Your Raffles 
+                <button id="top-buttons" className="btn btn-primary m-3" onClick={home}><i class="bi bi-house"/></button>
+                <button id="top-buttons" className="btn btn-primary m-3" onClick={updateGlobalRaffles}><i class="bi bi-arrow-clockwise"></i></button>
+                <button id="top-buttons" className="btn btn-primary m-3" onClick={createRaffle}>Create Raffle</button>
+            </h2> 
             <ul>
+                <div className='card-row'>
                 {globalRaffles.map((raffle) => (
-                    <div className='card' style={{width: '500px', padding: '50px', margin: '20px', align: 'center'}} key={`raffle-${raffle[0]}`}>
-                        <img  className='card-img-top' width='200' src={raffle[5]} alt="nft_image" id="itemImg"/>
-                        <br></br>
-                        <p className='white'><b className='white'>({raffle[0]}) Raffle at Address:</b> {raffle[1]}</p>
-                        <p><b className='white'>{raffle[7]}</b></p>
-                        <p><em className='white'>{raffle[6]}</em></p>
-                        <p className='white'><b className='white'>Ticket Price:</b> {web3Utils.fromWei(raffle[10], 'ether')} {nativeToken}</p>
-                        <p className='white'><b className='white'>Current State:</b> {raffle[11]}</p>
-                        {raffle[12] > 0
-                            ? <p className='white'><b className='white'>Ends At:</b> {(new Date(raffle[12] * 1000)).toLocaleString()}</p>
-                            : <p className='white'><b className='white'>Ends At:</b> Not Started</p>
-                        }
-                        <p className='white' style={{color: 'blue'}}><a href={`https://testnets.opensea.io/assets/mumbai/${raffle[8]}/${raffle[9]}`}>View on Opensea</a></p>
-                        <button className='btn btn-primary btn-sm' onClick={() => approveNFT(raffle[1], raffle[8], raffle[9])}>Approve</button>
-                        <br></br>
-                        <button className='btn btn-primary btn-sm' onClick={() => startRaffle(raffle[1])}>Start Raffle</button>
-                        <br></br>
-                        <button className='btn btn-primary btn-sm' onClick={() => cancelRaffle(raffle[1])}>Cancel Raffle</button>
-                        <br></br>
-                        <button className='btn btn-primary btn-sm' onClick={() => settleRaffle(raffle[1])}>Settle Raffle</button>
+                    <div className='row'>
+                        <div className='column'>
+                        <div className='card' style={{width: '500px', padding: '50px', margin: '20px', align: 'center'}} key={`raffle-${raffle[0]}`}>
+                            <img  className='card-img-top' width='200' src={raffle[5]} alt="nft_image" id="itemImg"/>
+                            <br></br>
+                            <p className='white'><b className='white'>({raffle[0]}) Raffle at Address:</b> {raffle[1]}</p>
+                            <p><b className='white'>{raffle[7]}</b></p>
+                            <p><em className='white'>{raffle[6]}</em></p>
+                            <p className='white'><b className='white'>Ticket Price:</b> {web3Utils.fromWei(raffle[10], 'ether')} {nativeToken}</p>
+                            <p className='white'><b className='white'>Current State:</b> {raffle[11]}</p>
+                            {raffle[12] > 0
+                                ? <p className='white'><b className='white'>Ends At:</b> {(new Date(raffle[12] * 1000)).toLocaleString()}</p>
+                                : <p className='white'><b className='white'>Ends At:</b> Not Started</p>
+                            }
+                            <p className='white' style={{color: 'blue'}}><a href={`https://testnets.opensea.io/assets/mumbai/${raffle[8]}/${raffle[9]}`}>View on Opensea</a></p>
+                            <button className='btn btn-primary btn-sm' onClick={() => approveNFT(raffle[1], raffle[8], raffle[9])}>Approve</button>
+                            <br></br>
+                            <button className='btn btn-primary btn-sm' onClick={() => startRaffle(raffle[1])}>Start Raffle</button>
+                            <br></br>
+                            <button className='btn btn-primary btn-sm' onClick={() => cancelRaffle(raffle[1])}>Cancel Raffle</button>
+                            <br></br>
+                            <button className='btn btn-primary btn-sm' onClick={() => settleRaffle(raffle[1])}>Settle Raffle</button>
+                        </div>
                     </div>
-                ))}
+                    </div>
+
+                )
+                )}
+                </div>
             </ul>
             <style
 dangerouslySetInnerHTML={{
@@ -192,11 +208,13 @@ dangerouslySetInnerHTML={{
     "\nbody {\n  background-color: #000;\n}\n.card {\n  background-color: #15172b;\n}\n.white {\n  color: #eee;\n}\n.card-img-top {\n  max-height: 350px;\n  min-height: 150px;\n  object-fit: cover;\n}\n"
 }}
 />
+
 <style
-  dangerouslySetInnerHTML={{
-    __html: "\n.btn {\n  background-color:#15172b;\n  border:none;\n}\n"
-  }}
-/>
+    dangerouslySetInnerHTML={{
+      __html:
+        "\n.card-row {\n  display: flex;\n  \n}\n\n"
+    }}
+  />
         </div>
     )
 }
