@@ -7,6 +7,7 @@
 
 ### Backend:
 - [ ] Disable Buttons on /create depending on cases (i.e. disable approve if already aproved, disable cancel if people have already entered, etc.)
+- [ ] Show a user's raffles on page load on /create
 - [ ] Add total tickets sold to and earnings estimate to /create so owner can view earnings
 - [X] Add winner to the NFTRaffle smart contract and add this into the frontend
 - [X] Fix issue with Metamask button greyed out

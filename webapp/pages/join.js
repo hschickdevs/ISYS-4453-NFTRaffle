@@ -103,6 +103,8 @@ export default function Join(){
 />
 
             <h2 className='white' style={{margin: '20px'}}>{rafflesDisplayState}</h2>
+            {(rafflesDisplay.length == 0 && rafflesDisplayState != 'Choose Raffles State to View') 
+              && <p className='white' style={{margin: '20px'}}>There are no raffles to display.</p>}
             {rafflesDisplay.map((raffle) => (
                     <div className='card' style={{width: '500px', padding: '50px', margin: '20px', align: 'center'}} key={`raffle-${raffle[0]}`}>
                         <img className='card-img-top' width='200' src={raffle[5]} alt="nft_image" id="itemImg"/>
