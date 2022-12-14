@@ -58,7 +58,7 @@ https://testnets.opensea.io/collection/digital-liminal-spaces
         4. Transfers the raised funds to the Raffle owner.
 
 ## Web Design Flow:
-![img](media/diagram2.png)
+![img](media/webflow_diagram.png)
 
 ## Tasks:
 - [x] _**Harrison**_ - Create Raffle smart contracts
