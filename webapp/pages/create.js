@@ -177,9 +177,8 @@ export default function Create(){
             <ul>
                 <div className='card-row'>
                 {globalRaffles.map((raffle) => (
-                    <div className='row'>
-                        <div className='column' key={`raffle-${raffle[0]}`}>
-                        <div className='card' style={{width: '500px', padding: '50px', margin: '20px', align: 'center'}}>
+                    <div className='column' key={`raffle-${raffle[0]}-col`}>
+                        <div className='card' style={{width: '500px', padding: '50px', margin: '20px', align: 'center'}} key={`raffle-${raffle[0]}-card`}>
                             <Image  className='card-img-top' width='200' src={raffle[5]} alt="nft_image" id="itemImg"/>
                             <br></br>
                             <p className='white'><b className='white'>({raffle[0]}) Raffle at Address:</b> {raffle[1]}</p>
@@ -206,7 +205,6 @@ export default function Create(){
                             <br></br>
                             <button className='btn btn-primary btn-sm' onClick={() => settleRaffle(raffle[1])}>Settle Raffle</button>
                         </div>
-                    </div>
                     </div>
 
                 )
