@@ -34,6 +34,7 @@ export default function Join_Raffle() {
 
     useEffect(() => {
         waitForRouterandWeb3(getRaffleData);
+        console.log(Date.now())
     }, [router.query.address]);
 
     const getRaffleData = async () => {
@@ -95,6 +96,8 @@ export default function Join_Raffle() {
                 value: totalEntryPrice,
             })
             alert(`Successfully purchased ${data.Numberoftickets} tickets for ${totalEntryPriceInETH} ETH!`);
+            // reroute the user back to the home page`
+            router.push('/join');
         } catch (err) {
             alert(err.message);
         }
@@ -119,7 +122,7 @@ export default function Join_Raffle() {
                     <a href={`https://testnets.opensea.io/assets/mumbai/${raffleData.NFTaddress}/${raffleData.NFTtokenID}`} ><img className='card-img-top' width='200' src={raffleData.NFTimage} alt="nft_image" id="itemImg" /></a>
                     <p><b className='white'>{raffleData.NFTname}</b></p>
                     <p><em className='white'>{raffleData.NFTdescription}</em></p>
-                    <p className='white'><b className='white'>Ticket Price:</b> {web3Utils.fromWei(String(raffleData.ticketPrice), 'ether')} ETH</p>
+                    <p className='white'><b className='white'>Ticket Price:</b> {web3Utils.fromWei(String(raffleData.ticketPrice), 'ether')} MATIC</p>
                     <p className='white'><b className='white'>Current State:</b> {raffleData.state}</p>
                     {raffleData.endTime > 0
                         ? <p className='white'><b className='white'>Ends At:</b> {(new Date(raffleData.endTime * 1000)).toLocaleString()}</p>
@@ -131,7 +134,7 @@ export default function Join_Raffle() {
                             <p className='white'><b className='white'>Winner:</b> {raffleData.winner}</p>
                         }
                     {/* <p style={{ color: 'blue' }}><a href={`https://testnets.opensea.io/assets/mumbai/${raffleData.NFTaddress}/${raffleData.NFTtokenID}`}>View on Opensea</a></p> */}
-                    {raffleData.state == "Active" &&
+                    {(raffleData.state == "Active" && ((Date.now() / 100) < raffleData.endTime)) &&
                         <div>
                             <p className='white'><b className='white'>Enter Raffle:</b></p>
                             <form onSubmit={handleSubmit(buyTickets)}>
@@ -146,6 +149,9 @@ export default function Join_Raffle() {
                     }
                     {raffleData.state != "Active" &&
                         <p style={{ color: 'red' }}>Cannot join raffle unless it is currently Active.</p>
+                    }
+                    {(((Date.now() / 100) > raffleData.endTime) && raffleData.state == "Active") &&
+                        <p style={{ color: 'red' }}>Cannot join raffle if it is past the end time.</p>
                     }
                     <style
   dangerouslySetInnerHTML={{
