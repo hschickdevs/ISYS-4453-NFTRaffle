@@ -1,6 +1,5 @@
 
 import { useForm } from "react-hook-form";
-import createRaffle from './Web3Client'
 import React, {useEffect, useState} from 'react'
 import { init, getNFTRaffleFactory, getNFTRaffle, getSelectedAccount, getNativeTokenSymbol } from './Web3Client'
 import * as web3Utils from 'web3-utils'
