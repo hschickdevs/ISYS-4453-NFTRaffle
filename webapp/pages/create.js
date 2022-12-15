@@ -1,6 +1,6 @@
 import styles from '../styles/Home.module.css'
 import React, {useEffect, useState} from 'react'
-import { init, getNFTRaffleFactory, getNFTRaffle, getERC721, getSelectedAccount, getNativeTokenSymbol } from './Web3Client'
+import { init, getNFTRaffleFactory, getNFTRaffle, getERC721, getSelectedAccount, getNativeTokenSymbol } from '../scripts/Web3Client'
 import * as web3Utils from 'web3-utils'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -179,7 +179,7 @@ export default function Create(){
                 {globalRaffles.map((raffle) => (
                     <div className='column' key={`raffle-${raffle[0]}-col`}>
                         <div className='card' style={{width: '500px', padding: '50px', margin: '20px', align: 'center'}} key={`raffle-${raffle[0]}-card`}>
-                            <Image  className='card-img-top' width='200' src={raffle[5]} alt="nft_image" id="itemImg"/>
+                            <img className='card-img-top' width='200' src={raffle[5]} alt="nft_image" id="itemImg"/>
                             <br></br>
                             <p className='white'><b className='white'>({raffle[0]}) Raffle at Address:</b> {raffle[1]}</p>
                             <p><b className='white'>{raffle[7]}</b></p>

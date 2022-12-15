@@ -1,6 +1,6 @@
 import styles from '../styles/Home.module.css'
 import React, {useEffect, useState} from 'react'
-import { init, getNFTRaffleFactory, getNFTRaffle, getERC721, getSelectedAccount, getNativeTokenSymbol } from './Web3Client'
+import { init, getNFTRaffleFactory, getNFTRaffle, getERC721, getSelectedAccount, getNativeTokenSymbol } from '../scripts/Web3Client'
 import * as web3Utils from 'web3-utils';
 import Link from 'next/link';
 

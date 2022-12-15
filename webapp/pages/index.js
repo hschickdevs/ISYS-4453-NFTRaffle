@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, {useEffect} from 'react'
-import { init } from './Web3Client'
+import { init } from '../scripts/Web3Client'
 
 
 export default function Home() {
