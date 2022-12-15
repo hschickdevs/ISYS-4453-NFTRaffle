@@ -134,7 +134,7 @@ export default function Join_Raffle() {
                             <p className='white'><b className='white'>Winner:</b> {raffleData.winner}</p>
                         }
                     {/* <p style={{ color: 'blue' }}><a href={`https://testnets.opensea.io/assets/mumbai/${raffleData.NFTaddress}/${raffleData.NFTtokenID}`}>View on Opensea</a></p> */}
-                    {(raffleData.state == "Active" && ((Date.now() / 100) < raffleData.endTime)) &&
+                    {(raffleData.state == "Active" && ((Date.now() / 1000) < raffleData.endTime)) &&
                         <div>
                             <p className='white'><b className='white'>Enter Raffle:</b></p>
                             <form onSubmit={handleSubmit(buyTickets)}>
@@ -149,6 +149,9 @@ export default function Join_Raffle() {
                     }
                     {raffleData.state != "Active" &&
                         <p style={{ color: 'red' }}>Cannot join raffle unless it is currently Active.</p>
+                    }
+                    {(((Date.now() / 100) > raffleData.endTime) && raffleData.state == "Active") &&
+                        <p style={{ color: 'red' }}>Cannot join raffle if it is past the end time.</p>
                     }
                     <style
   dangerouslySetInnerHTML={{
