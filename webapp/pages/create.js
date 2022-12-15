@@ -13,7 +13,7 @@ export default function Create(){
     const [nativeToken, setNativeToken] = useState('');
 
     var waitForWeb3AndWallet = function (callback) {
-        if (typeof window.ethereum !== 'undefined' && typeof window.ethereum.selectedAddress != 'undefined') {
+        if (typeof window.ethereum !== 'undefined' && (typeof window.ethereum.selectedAddress != 'undefined' && window.ethereum.selectedAddress != null)) {
             console.log(`Web3 and Wallet Detected as ${window.ethereum.selectedAddress}!`)
             callback();
         } else {
@@ -85,7 +85,7 @@ export default function Create(){
             */
             return output;
         } catch(err) {
-            alert('An error occurred: ' + err.message)
+            alert('An error occurred in getRafflesByOwner(): ' + err.message)
         }
     }
 
