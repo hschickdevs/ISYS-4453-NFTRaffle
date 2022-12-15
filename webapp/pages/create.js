@@ -3,7 +3,6 @@ import React, {useEffect, useState} from 'react'
 import { init, getNFTRaffleFactory, getNFTRaffle, getERC721, getSelectedAccount, getNativeTokenSymbol } from '../scripts/Web3Client'
 import * as web3Utils from 'web3-utils'
 import Link from 'next/link'
-import Image from 'next/image'
 
 
 // This page will list deployed raffles the owner has, it also has a button to create a new one.
@@ -102,7 +101,7 @@ export default function Create(){
             const NFTRaffleContract = await getNFTRaffle(raffleAddress);
             return await NFTRaffleContract.methods.isApproved().call();
         } catch(err) {
-            alert('An error occurred: ' + err.message)
+            alert('An error occurred in checkIfApproved(): ' + err.message)
         }
     }
     const approveNFT = async (raffleAddress, nftAddress, tokenId) => {
