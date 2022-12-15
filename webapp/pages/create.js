@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react'
 import { init, getNFTRaffleFactory, getNFTRaffle, getERC721, getSelectedAccount, getNativeTokenSymbol } from './Web3Client'
 import * as web3Utils from 'web3-utils'
 import Link from 'next/link'
+import Image from 'next/image'
 
 
 // This page will list deployed raffles the owner has, it also has a button to create a new one.
@@ -176,37 +177,37 @@ export default function Create(){
             <ul>
                 <div className='card-row'>
                 {globalRaffles.map((raffle) => (
-                    <div className='row'>
-                        <div className='column'>
-                        <div className='card' style={{width: '500px', padding: '50px', margin: '20px', align: 'center'}} key={`raffle-${raffle[0]}`}>
-                            <img  className='card-img-top' width='200' src={raffle[5]} alt="nft_image" id="itemImg"/>
-                            <br></br>
-                            <p className='white'><b className='white'>({raffle[0]}) Raffle at Address:</b> {raffle[1]}</p>
-                            <p><b className='white'>{raffle[7]}</b></p>
-                            <p><em className='white'>{raffle[6]}</em></p>
-                            <p className='white'><b className='white'>Ticket Price:</b> {web3Utils.fromWei(raffle[10], 'ether')} {nativeToken}</p>
-                            <p className='white'><b className='white'>Tickets Sold:</b> {raffle[14]}</p>
-                            <p className='white'><b className='white'>Current Earnings:</b> {web3Utils.fromWei(String(raffle[14] * raffle[10]), 'ether')} {nativeToken}</p>
-                            <p className='white'><b className='white'>Current State:</b> {raffle[11]}</p>
-                            {raffle[12] > 0
-                                ? <p className='white'><b className='white'>Ends At:</b> {(new Date(raffle[12] * 1000)).toLocaleString()}</p>
-                                : <p className='white'><b className='white'>Ends At:</b> Not Started</p>
-                            }
-                            {/* {show winner} */}
-                            {raffle[13] != "0x0000000000000000000000000000000000000000" &&
-                                <p className='white'><b className='white'>Winner:</b> {raffle[13]}</p>
-                            }
-                            <p className='white' style={{color: 'blue'}}><a href={`https://testnets.opensea.io/assets/mumbai/${raffle[8]}/${raffle[9]}`}>View on Opensea</a></p>
-                            <button className='btn btn-primary btn-sm' onClick={() => approveNFT(raffle[1], raffle[8], raffle[9])}>Approve</button>
-                            <br></br>
-                            <button className='btn btn-primary btn-sm' onClick={() => startRaffle(raffle[1])}>Start Raffle</button>
-                            <br></br>
-                            <button className='btn btn-primary btn-sm' onClick={() => cancelRaffle(raffle[1])}>Cancel Raffle</button>
-                            <br></br>
-                            <button className='btn btn-primary btn-sm' onClick={() => settleRaffle(raffle[1])}>Settle Raffle</button>
-                        </div>
+                    // <div className='row'>
+                    //     <div className='column'>
+                    <div className='card' style={{width: '500px', padding: '50px', margin: '20px', align: 'center'}} key={`raffle-${raffle[0]}`}>
+                        <Image className='card-img-top' width='200' src={raffle[5]} alt="nft_image" id="itemImg"/>
+                        <br></br>
+                        <p className='white'><b className='white'>({raffle[0]}) Raffle at Address:</b> {raffle[1]}</p>
+                        <p><b className='white'>{raffle[7]}</b></p>
+                        <p><em className='white'>{raffle[6]}</em></p>
+                        <p className='white'><b className='white'>Ticket Price:</b> {web3Utils.fromWei(raffle[10], 'ether')} {nativeToken}</p>
+                        <p className='white'><b className='white'>Tickets Sold:</b> {raffle[14]}</p>
+                        <p className='white'><b className='white'>Current Earnings:</b> {web3Utils.fromWei(String(raffle[14] * raffle[10]), 'ether')} {nativeToken}</p>
+                        <p className='white'><b className='white'>Current State:</b> {raffle[11]}</p>
+                        {raffle[12] > 0
+                            ? <p className='white'><b className='white'>Ends At:</b> {(new Date(raffle[12] * 1000)).toLocaleString()}</p>
+                            : <p className='white'><b className='white'>Ends At:</b> Not Started</p>
+                        }
+                        {/* {show winner} */}
+                        {raffle[13] != "0x0000000000000000000000000000000000000000" &&
+                            <p className='white'><b className='white'>Winner:</b> {raffle[13]}</p>
+                        }
+                        <p className='white' style={{color: 'blue'}}><a href={`https://testnets.opensea.io/assets/mumbai/${raffle[8]}/${raffle[9]}`}>View on Opensea</a></p>
+                        <button className='btn btn-primary btn-sm' onClick={() => approveNFT(raffle[1], raffle[8], raffle[9])}>Approve</button>
+                        <br></br>
+                        <button className='btn btn-primary btn-sm' onClick={() => startRaffle(raffle[1])}>Start Raffle</button>
+                        <br></br>
+                        <button className='btn btn-primary btn-sm' onClick={() => cancelRaffle(raffle[1])}>Cancel Raffle</button>
+                        <br></br>
+                        <button className='btn btn-primary btn-sm' onClick={() => settleRaffle(raffle[1])}>Settle Raffle</button>
                     </div>
-                    </div>
+                    // </div>
+                    // </div>
 
                 )
                 )}
