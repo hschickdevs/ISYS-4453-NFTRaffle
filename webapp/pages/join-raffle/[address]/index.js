@@ -150,9 +150,6 @@ export default function Join_Raffle() {
                     {raffleData.state != "Active" &&
                         <p style={{ color: 'red' }}>Cannot join raffle unless it is currently Active.</p>
                     }
-                    {(((Date.now() / 100) > raffleData.endTime) && raffleData.state == "Active") &&
-                        <p style={{ color: 'red' }}>Cannot join raffle if it is past the end time.</p>
-                    }
                     <style
   dangerouslySetInnerHTML={{
     __html:
