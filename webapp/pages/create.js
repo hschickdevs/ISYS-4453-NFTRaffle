@@ -111,6 +111,7 @@ export default function Create(){
             }
             const ERC721Contract = await getERC721(nftAddress);
             await ERC721Contract.methods.approve(raffleAddress, tokenId).send({from: getSelectedAccount()});
+            alert('Successfully approved contract to access NFT!')
         } catch(err) {
             alert('An error occurred: ' + err.message)
         }
@@ -124,6 +125,8 @@ export default function Create(){
             }
             const NFTRaffleContract = await getNFTRaffle(raffleAddress);
             await NFTRaffleContract.methods.startRaffle().send({from: getSelectedAccount()});
+
+            alert ('Raffle succesfully started!')
         } catch(err) {
             alert('An error occurred: ' + err.message)
         }
@@ -134,6 +137,8 @@ export default function Create(){
         try {
             const NFTRaffleContract = await getNFTRaffle(raffleAddress);
             await NFTRaffleContract.methods.cancelRaffle().send({from: getSelectedAccount()});
+
+            alert ('Raffle successfully cancelled.')
         } catch(err) {
             alert('An error occurred: ' + err.message)
         }

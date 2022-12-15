@@ -50,6 +50,7 @@ export default function Create_Raffle(){
                 from: getSelectedAccount(),
             })
             console.log(raffleAddress);  // The address of the newly created raffle
+            alert('Raffle succesfully created!')
         } catch(err) {
             alert(err.message);
         }
