@@ -7,7 +7,9 @@
  The platform allows users to create and join raffles for ERC721 NFTs. The raffles are secured by an escrow contract that receives the ERC721 NFT and holds it for the duration of the raffle.
  During the raffle, users can purchase tickets for the predetermined price. Once the raffle is over, the winner is chosen at random using the linear congruential generator, and the NFT is sent to the winner and funds send to the Raffle owner. *For a detailed overview of the smart contract functionality, see the contract design flows below.*
 
- To interact with these contracts at a high level, we have created a frontend using React and Next.js. The site was styled using bootstrap and other frameworks. The site is hosted on Vercel with full functionality.
+ To interact with these contracts at a high level, we have created a frontend using React and Next.js. The site was styled using bootstrap and other frameworks. The site is hosted on Vercel with full functionality, connected to contracts deployed on Polygon's Mumbai testnet for the backend.
+ 
+![polygon_mumbai](https://i.ibb.co/2kyYHfZ/testnet.png)
 
 ## Problems Addressed:
 - Centralized Raffles are not trustless, and can be manipulated by the raffle organizer. (e.g. the organizer can choose the winner, or not pay out the prize)
