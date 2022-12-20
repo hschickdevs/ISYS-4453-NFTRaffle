@@ -9,7 +9,7 @@
 
  To interact with these contracts at a high level, we have created a frontend using React and Next.js. The site was styled using bootstrap and other frameworks. The site is hosted on Vercel with full functionality, connected to contracts deployed on Polygon's Mumbai testnet for the backend.
  
-![polygon_mumbai](https://i.ibb.co/2kyYHfZ/testnet.png)
+![polygon_mumbai](https://i.ibb.co/86g6ht8/testnet.png)
 
 ## Problems Addressed:
 - Centralized Raffles are not trustless, and can be manipulated by the raffle organizer. (e.g. the organizer can choose the winner, or not pay out the prize)
